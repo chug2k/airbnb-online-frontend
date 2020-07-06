@@ -10,6 +10,7 @@ import {
   CardSubtitle,
   CardText,
 } from "reactstrap";
+import Rheostat from "rheostat";
 
 const ExperiencesList = () => {
   const [experiences, setExperiences] = useState([]);
@@ -23,9 +24,15 @@ const ExperiencesList = () => {
     fetchData();
   }, []);
 
+  const onChange = (e) => {
+    console.log(e);
+  };
+
   return (
     <Container>
       <h1> Experiences </h1>
+      <Rheostat min={1} max={100} values={[1, 100]} onChange={onChange} />
+      <br />
       <Row>
         {experiences.map((e) => (
           <Col sm={4}>
