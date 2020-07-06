@@ -1,4 +1,15 @@
 import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  CardText,
+} from "reactstrap";
 
 const ExperiencesList = () => {
   const [experiences, setExperiences] = useState([]);
@@ -13,23 +24,28 @@ const ExperiencesList = () => {
   }, []);
 
   return (
-    <div>
+    <Container>
       <h1> Experiences </h1>
-      {experiences.map((e) => (
-        <Experience {...e} />
-      ))}
-    </div>
+      <Row>
+        {experiences.map((e) => (
+          <Col sm={4}>
+            <Experience {...e} />
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 };
 
 const Experience = ({ title, pictureUrl, country, duration, price }) => (
-  <div>
-    <h2>{title}</h2>
-    <img src={pictureUrl} />
-    <h3>{country}</h3>
-    <h4>Starting from ${price}</h4>
-    <h4>{duration} hour</h4>
-  </div>
+  <Card>
+    <CardImg top width="100%" src={pictureUrl} alt="Card image cap" />
+    <CardBody>
+      <CardTitle>{title}</CardTitle>
+      <CardSubtitle>{country}</CardSubtitle>
+      <CardText>Starting from ${price}</CardText>
+    </CardBody>
+  </Card>
 );
 
 export default ExperiencesList;
